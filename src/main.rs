@@ -1,5 +1,5 @@
 use async_openai::Client;
-use commands::{answer::answer, ask::ask};
+use commands::{answer::answer, ask::ask, challenge::challenge, hotkey::hotkey, raw::raw};
 use dotenv;
 use poise::serenity_prelude as serenity;
 
@@ -19,7 +19,8 @@ async fn main() {
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
             // list usable commands
-            commands: vec![ask(), answer()],
+            // add descriptions
+            commands: vec![ask(), answer(), challenge(), raw(), hotkey()],
             ..Default::default()
         })
         .token(std::env::var("DISCORD_TOKEN").expect("missing DISCORD_TOKEN"))
